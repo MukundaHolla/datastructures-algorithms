@@ -23,8 +23,7 @@ class Node {
       this.left.insert(data);
     } else if (data < this.data) {
       this.left = new Node(data);
-    }
-    if (data > this.data && this.right) {
+    } else if (data > this.data && this.right) {
       this.right.insert(data);
     } else if (data > this.data) {
       this.right = new Node(data);
@@ -32,14 +31,16 @@ class Node {
   }
 
   contains(data) {
-    if (this.data === data) {
+    if (data === this.data) {
       return this;
     }
-    if (this.data < data && this.right) {
+    if (data > this.data && this.right) {
       return this.right.contains(data);
-    } else if (this.data > data && this.left) {
+    }
+    if (data < this.data && this.left) {
       return this.left.contains(data);
     }
+
     return null;
   }
 }
